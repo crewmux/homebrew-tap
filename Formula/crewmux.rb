@@ -8,7 +8,11 @@ class Crewmux < Formula
 
   def install
     system "cargo", "install", *std_cargo_args(root: libexec)
-    bin.install libexec/"bin/ai" => "crewmux"
+
+    installed_bins = Dir[libexec/"bin/*"]
+    odie "No executable found in #{libexec}/bin" if installed_bins.empty?
+
+    bin.install installed_bins.first => "crewmux"
   end
 
   def caveats
