@@ -7,8 +7,8 @@ class Crewmux < Formula
   depends_on "tmux"
 
   def install
-    system "cargo", "build", "--release", "--locked"
-    bin.install "target/release/ai" => "crewmux"
+    system "cargo", "install", *std_cargo_args(root: libexec)
+    bin.install libexec/"bin/ai" => "crewmux"
   end
 
   def caveats
