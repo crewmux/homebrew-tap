@@ -1,0 +1,28 @@
+class Crewmux < Formula
+  desc "Multi-agent orchestration for tmux-powered teams"
+  homepage "https://github.com/crewmux/client"
+  head "https://github.com/crewmux/client.git", branch: "main"
+
+  depends_on "rust" => :build
+  depends_on "tmux"
+
+  def install
+    system "cargo", "build", "--release", "--locked"
+    bin.install "target/release/ai" => "crewmux"
+  end
+
+  def caveats
+    <<~EOS
+      CrewMux needs at least one agent CLI on your PATH at runtime:
+        - claude
+        - codex
+
+      tmux is installed automatically as a Homebrew dependency.
+    EOS
+  end
+
+  test do
+    assert_match "AI Team Controller", shell_output("#{bin}/crewmux --help")
+    assert_match "Start a new AI team session", shell_output("#{bin}/crewmux team --help")
+  end
+end
