@@ -1,7 +1,9 @@
 class Crewmux < Formula
   desc "Multi-agent orchestration for tmux-powered teams"
   homepage "https://github.com/crewmux/cli"
-  head "https://github.com/crewmux/cli.git", branch: "main"
+  url "https://github.com/crewmux/cli/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "c8002a309e808075e9441427037e34047083bba2b3f0001c95f13a8731097e14"
+  version "0.1.0"
 
   depends_on "rust" => :build
   depends_on "tmux"
