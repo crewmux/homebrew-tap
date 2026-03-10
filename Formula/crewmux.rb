@@ -26,7 +26,7 @@ class Crewmux < Formula
   end
 
   test do
-    assert_match "AI Team Controller", shell_output("#{bin}/crewmux --help")
+    assert_match "Usage: crewmux", shell_output("#{bin}/crewmux --help")
     assert_match "Start a new AI team session", shell_output("#{bin}/crewmux team --help")
   end
 end
